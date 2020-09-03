@@ -41,7 +41,7 @@
                     </div>
                     <div class="col-12 col-lg-4">
                         <div class="box shadow">
-                            <div class="row g3">
+                            <form method="post" class="row g3">
                                 <div class="col-12 mb-4">
                                     <label class="lead text-white">
                                         Ingresa tus credenciales
@@ -84,7 +84,7 @@
                                         Registrarse
                                     </button>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
