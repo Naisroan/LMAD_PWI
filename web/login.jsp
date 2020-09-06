@@ -15,15 +15,15 @@
         <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500&display=swap" rel="stylesheet">
         
         <!-- fontawesome -->
-        <link rel="stylesheet" href="../../res/lib/fontawesome/css/all.min.css">
+        <link rel="stylesheet" href="res/lib/fontawesome/css/all.min.css">
         
         <!-- bootstrap -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
         
         <!-- first party -->
-        <link rel="stylesheet" href="../../res/lib/bootstrap/mods.css">
-        <link rel="stylesheet" href="../../res/css/site.css">
-        <link rel="stylesheet" href="login.css">
+        <link rel="stylesheet" href="res/lib/bootstrap/mods.css">
+        <link rel="stylesheet" href="res/css/site.css">
+        <link rel="stylesheet" href="res/css/login.css">
 
     </head>
     <body class="d-flex flex-column h-100">
@@ -34,14 +34,14 @@
                 <div class="row m-0 mt-lg-5">
                     <div class="d-none d-lg-inline-block offset-lg-1 col-lg-6">
                         <!-- <img src="../../res/images/login_account_credentials.svg" alt="" width="400" srcset=""> -->
-                        <h1 class="font-weight-bolder display-5 mt-5 mb-4" style="color: #e69e7b">
+                        <h1 class="font-weight-bolder display-5 mt-5 mb-4" style="color: #0ddcfd">
                             NotiApp!
                         </h1>
                         <h2 class="text-white">Descubre las noticias mas relevantes del momento</h2>
                     </div>
                     <div class="col-12 col-lg-4">
                         <div class="box shadow">
-                            <form method="post" class="row g3">
+                            <form id="frm_login" method="post" class="row g3">
                                 <div class="col-12 mb-4">
                                     <label class="lead text-white">
                                         Ingresa tus credenciales
@@ -53,8 +53,8 @@
                                             <i class="fas fa-user fa-fw"></i>
                                         </span>
                                         <input 
-                                        id="usuario" 
-                                        name="usuario" 
+                                        id="nick" 
+                                        name="nick" 
                                         type="text" 
                                         class="form-control form-control-lg"
                                         placeholder="Usuario" />
@@ -80,9 +80,9 @@
                                     </button>
                                 </div>
                                 <div class="col-12 text-center">
-                                    <button id="btnRegistrar" name="btnRegistrar" class="btn btn-outline-light btn-lg" data-toggle="modal" data-target="#modalRegistrarse">
+                                    <a href="#!" name="btnRegistrar" class="btn btn-outline-light btn-lg" data-toggle="modal" data-target="#modalRegistrarse">
                                         Registrarse
-                                    </button>
+                                    </a>
                                 </div>
                             </form>
                         </div>
@@ -92,9 +92,15 @@
         </div>
 
         <footer class="footer mt-auto py-4 bg-dark text-light">
-            <div class="container">
-                LMAD
-            </div>
+            <%-- <div class="container">
+                <div class="d-flex justify-content-between">
+                    <img src="../../res/images/uanl_alpha_white.png" class="mr-2" width="150" />
+                    <div class="fcfm">
+                        <img src="../../res/images/lmad.png" class="mr-3" width="70" style="vertical-align: bottom;" />
+                        <img src="../../res/images/fcfm_alpha_white.png" width="150" />
+                    </div>
+                </div>
+            </div> --%>
         </footer>
 
         <div id="modalRegistrarse" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="registroModalLabel" aria-hidden="true">
@@ -107,30 +113,38 @@
                         </button> -->
                     </div>
                     <div class="modal-body">
-                        <form class="row g-3" method="post">
+                        <form id="frm_registro" class="row g-3" method="post">
                             <div class="col-12 mb-3">
                                 <label for="" class="lead">
                                     Ingresa los siguientes datos:
                                 </label>
                             </div>
                             <div class="col-12 mb-3">
-                                <input name="registro_confirmar_password" type="email" placeholder="Correo" class="form-control form-control-lg">
-                                <small class="text-muted">Ingresa tu correo electrónico</small>
+                                <input id="registro_correo" name="registro_correo" type="email" placeholder="Correo" class="form-control form-control-lg">
+                                <small class="text-muted d-block">Ingresa tu correo electrónico</small>
+                                <span class="badge rounded-pill bg-secondary">30 letras máximo</span>
                             </div>
                             <div class="col-12 mb-3">
-                                <input name="registro_usuario" type="text" placeholder="Usuario" class="form-control form-control-lg">
-                                <small class="text-muted">Ingresa tu nombre de usuario</small>
+                                <input id="registro_nick" name="registro_nick" type="text" placeholder="Usuario" class="form-control form-control-lg">
+                                <small class="text-muted d-block">Ingresa tu nombre de usuario</small>
+                                <span class="badge rounded-pill bg-secondary">3 letras mínimo</span>
+                                <span class="badge rounded-pill bg-secondary">25 letras máximo</span>
                             </div>
                             <div class="col-12 mb-3">
-                                <input name="registro_password" type="password" placeholder="Contraseña" class="form-control form-control-lg">
-                                <small class="text-muted">Ingresa tu contraseña</small>
+                                <input id="registro_password" name="registro_password" type="password" placeholder="Contraseña" class="form-control form-control-lg">
+                                <small class="text-muted d-block">Ingresa tu contraseña</small>
+                                <span class="badge rounded-pill bg-secondary">8 letras mínimo</span>
+                                <span class="badge rounded-pill bg-secondary">25 letras máximo</span>
+                                <span class="badge rounded-pill bg-secondary">Un número</span>
+                                <span class="badge rounded-pill bg-secondary">Una mayúscula</span>
+                                <span class="badge rounded-pill bg-secondary">Una minúscula</span>
                             </div>
                             <div class="col-12 mb-4">
-                                <input name="registro_confirmar_password" type="password" placeholder="Confirmar contrseña" class="form-control form-control-lg">
+                                <input id="registro_confirmar_password" name="registro_confirmar_password" type="password" placeholder="Confirmar contraseña" class="form-control form-control-lg">
                                 <small class="text-muted">Ingresa de nuevo tu contraseña</small>
                             </div>
                             <div class="col-12 text-right mb-3">
-                                <button type="button" class="btn btn-primary">Registrarse</button>
+                                <button id="btnRegistrar" type="submit" class="btn btn-primary">Registrarse</button>
                             </div>
                         </form>
                     </div>
@@ -141,13 +155,19 @@
             </div>
         </div>
         
+        <!-- jquery (para ajax) -->
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        
+        <!-- sweetalert -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        
         <!-- bootstrap -->
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
         
         <!-- first party -->
-        <script src="../../res/js/site.js"></script>
-        <script src="login.js"></script>
+        <script src="res/js/site.js"></script>
+        <script src="res/js/login.js"></script>
 
     </body>
 </html>
