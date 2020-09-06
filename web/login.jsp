@@ -81,7 +81,7 @@
                                 </div>
                                 <div class="col-12 text-center">
                                     <a href="#!" name="btnRegistrar" class="btn btn-outline-light btn-lg" data-toggle="modal" data-target="#modalRegistrarse">
-                                        Registrarse
+                                        Crearse una cuenta
                                     </a>
                                 </div>
                             </form>
@@ -107,24 +107,22 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="registroModalLabel">Registrate</h5>
-                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <h5 class="modal-title" id="registroModalLabel">
+                            Registrate                        
+                            <small class="text-muted d-block">Ingresa los datos que se te piden</small>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
-                        </button> -->
+                        </button>
                     </div>
                     <div class="modal-body">
                         <form id="frm_registro" class="row g-3" method="post">
-                            <div class="col-12 mb-3">
-                                <label for="" class="lead">
-                                    Ingresa los siguientes datos:
-                                </label>
-                            </div>
-                            <div class="col-12 mb-3">
+                            <div class="col-12 col-lg-6 mb-3">
                                 <input id="registro_correo" name="registro_correo" type="email" placeholder="Correo" class="form-control form-control-lg">
                                 <small class="text-muted d-block">Ingresa tu correo electrónico</small>
                                 <span class="badge rounded-pill bg-secondary">30 letras máximo</span>
                             </div>
-                            <div class="col-12 mb-3">
+                            <div class="col-12 col-lg-6 mb-3">
                                 <input id="registro_nick" name="registro_nick" type="text" placeholder="Usuario" class="form-control form-control-lg">
                                 <small class="text-muted d-block">Ingresa tu nombre de usuario</small>
                                 <span class="badge rounded-pill bg-secondary">3 letras mínimo</span>
@@ -143,14 +141,16 @@
                                 <input id="registro_confirmar_password" name="registro_confirmar_password" type="password" placeholder="Confirmar contraseña" class="form-control form-control-lg">
                                 <small class="text-muted">Ingresa de nuevo tu contraseña</small>
                             </div>
-                            <div class="col-12 text-right mb-3">
-                                <button id="btnRegistrar" type="submit" class="btn btn-primary">Registrarse</button>
+                            <div class="col-12 text-center mb-3">
+                                <button id="btnRegistrar" type="submit" class="btn btn-primary btn-lg">Registrarse</button>
                             </div>
                         </form>
                     </div>
+                    <!--
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
                     </div>
+                    -->
                 </div>
             </div>
         </div>
