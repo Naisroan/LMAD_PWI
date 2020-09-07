@@ -1,3 +1,14 @@
 *:not(.fas) {
     font-family: 'Tajawal', sans-serif !important;
 }
+
+.mask {
+    display: inline-block;
+    overflow: hidden;
+    background: url("https://image.jimcdn.com/app/cms/image/transf/none/path/s24ebfe93c8b643dd/image/i1a5cb99b5155e6b9/version/1561058482/image.gif");
+    background-position: 0 50%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -o-background-clip: text;
+    background-clip: text;
+}

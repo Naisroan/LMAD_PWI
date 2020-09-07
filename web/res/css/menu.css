@@ -1,0 +1,41 @@
+
+.notiapp .busqueda .form-control {
+    box-shadow: none !important;
+}
+
+.notiapp .busqueda .form-control:focus {
+    box-shadow: none !important;
+}
+
+.navegacion ul li a {
+    transition-duration: 0.3s;
+}
+
+.navegacion ul li a:hover {
+    color: #0d6efd !important;
+    text-shadow: 0 0 1px #0d6efd;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+    
+    .navegacion ul {
+       justify-content: space-around !important; 
+    }
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) { 
+}

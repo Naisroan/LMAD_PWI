@@ -9,6 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Login - NotiApp!</title>
 
         <!-- font -->
@@ -34,10 +35,10 @@
                 <div class="row m-0 mt-lg-5">
                     <div class="d-none d-lg-inline-block offset-lg-1 col-lg-6">
                         <!-- <img src="../../res/images/login_account_credentials.svg" alt="" width="400" srcset=""> -->
-                        <h1 class="font-weight-bolder display-5 mt-5 mb-4" style="color: #0ddcfd">
+                        <h1 class="font-weight-bolder display-1 mt-5 mb-4 mask" style="color: #0ddcfd">
                             NotiApp!
                         </h1>
-                        <h2 class="text-white">Descubre las noticias mas relevantes del momento</h2>
+                        <h2 class="text-dark">Descubre las noticias mas relevantes del momento</h2>
                     </div>
                     <div class="col-12 col-lg-4">
                         <div class="box shadow">
