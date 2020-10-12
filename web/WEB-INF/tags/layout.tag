@@ -36,43 +36,56 @@
         
         <div class="wrapper">
             
+            <!--
             <div class="notiapp bg-dark py-2">
                 <div class="container d-flex justify-content-between">
-                    <div class="logo">
-                        <h1 class="text-white">Notiapp!</h1>
-                    </div>
-                    <div class="busqueda text-white ml-4">
-                        <form method="post">
-                            <div class="input-group">
-                                <span class="input-group-text">
-                                    <i class="fas fa-search text-white fa-fw"></i>
-                                </span>
-                                <input type="text" class="form-control  text-white" placeholder="Ingresa tu búsqueda" />
-                            </div>
-                        </form>
-                    </div>
+                    
+                    
                 </div>
             </div>
+            -->
             
-            <nav class="navegacion bg-dark sticky-top">
-                <div class="container">
-                    <ul class="list-unstyled d-flex justify-content-between mb-0">
-                        <li class="d-flex">
-                            <a href="#!" class="text-white p-3">
-                                <i class="fas fa-user fa-fw"></i>
-                            </a>
-                        </li>
-                        <li class="d-flex">
-                            <a href="#!" class="text-white p-3">
-                                <i class="fas fa-home fa-fw"></i>
-                            </a>
-                        </li>
-                        <li class="d-flex">
-                            <a href="#!" class="text-white p-3">
-                                <i class="fas fa-bars fa-fw"></i>
-                            </a>
-                        </li>
-                    </ul>
+            <nav class="navegacion sticky-top shadow">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="logo h-100 d-flex flex-column justify-content-center">
+                                <h1 class="text-inherit d-none d-lg-inline-block mb-0">Notiapp!</h1>
+                                <h1 class="text-inherit d-inline-block d-lg-none mb-0">N!</h1>
+                            </div>
+                        </div>
+                        <div class="col-6 text-center text-inherit">
+                            <ul class="list-unstyled d-flex mb-0">
+                                <li class="d-flex">
+                                    <a href="#!" class="text-inherit p-3">
+                                        <i class="fas fa-user fa-fw"></i>
+                                    </a>
+                                </li>
+                                <li class="d-flex">
+                                    <a href="#!" class="text-inherit p-3">
+                                        <i class="fas fa-home fa-fw"></i>
+                                    </a>
+                                </li>
+                                <li class="d-flex">
+                                    <a href="#!" class="text-inherit p-3">
+                                        <i class="fas fa-bars fa-fw"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-3 text-right">
+                            <div class="busqueda text-inherit h-100 d-flex flex-column justify-content-center">
+                                <form method="post">
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-search text-white fa-fw"></i>
+                                        </span>
+                                        <input type="text" class="form-control text-inherit" placeholder="Ingresa tu búsqueda" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>   
                 </div>
             </nav>
             

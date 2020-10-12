@@ -4,14 +4,14 @@
 */
 
 .encabezado .acciones ul li a {
-    color: inherit;
+    color: white;
     border-radius: 25px;
-    transition-duration: 0.3s;
+    transition-duration: 0.1s;
 }
 
 .encabezado .acciones ul li a:hover {
     background-image: repeating-linear-gradient(135deg, hsla(210,79%,75%,0.05) 0px, hsla(210,79%,75%,0.05) 1px,transparent 1px, transparent 11px,hsla(210,79%,75%,0.05) 11px, hsla(210,79%,75%,0.05) 12px,transparent 12px, transparent 32px),repeating-linear-gradient(45deg, hsla(210,79%,75%,0.05) 0px, hsla(210,79%,75%,0.05) 1px,transparent 1px, transparent 11px,hsla(210,79%,75%,0.05) 11px, hsla(210,79%,75%,0.05) 12px,transparent 12px, transparent 32px),repeating-linear-gradient(90deg, hsla(210,79%,75%,0.05) 0px, hsla(210,79%,75%,0.05) 1px,transparent 1px, transparent 11px,hsla(210,79%,75%,0.05) 11px, hsla(210,79%,75%,0.05) 12px,transparent 12px, transparent 32px),repeating-linear-gradient(0deg, hsla(210,79%,75%,0.05) 0px, hsla(210,79%,75%,0.05) 1px,transparent 1px, transparent 11px,hsla(210,79%,75%,0.05) 11px, hsla(210,79%,75%,0.05) 12px,transparent 12px, transparent 32px),linear-gradient(90deg, rgb(83, 220, 200),rgb(58, 78, 174));
-    animation: mymove 10s linear infinite alternate;
+    color: white!important;
 }
 
 .encabezado .acciones ul li a h6 {

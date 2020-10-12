@@ -26,7 +26,7 @@
         <div class="row mt-5">
             
             <div class="encabezado d-none d-lg-block col-12 col-lg-2 position-fixed">
-                <div class="text-dark">
+                <div class="text-white">
                     <div class="d-flex align-items-center mb-5">
                         <img src="https://picsum.photos/60/60" height="60" width="60" class="rounded-circle mr-3" />
                         <div class="">
@@ -37,7 +37,7 @@
                     <div class="acciones text-dark">
                         <div class="mb-3">
                             <small class="text-primary">
-                                ACCIONES
+                                Acciones
                             </small>
                         </div>
                         <ul class="list-unstyled">
@@ -52,7 +52,7 @@
                 </div>
             </div>
             
-            <div class="col-12 col-lg-4 offset-lg-4">
+            <div class="col-12 col-lg-6 offset-lg-3">
                 
                 <!--
                 <div class="post_nuevo mb-5">

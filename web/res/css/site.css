@@ -12,3 +12,7 @@
     -o-background-clip: text;
     background-clip: text;
 }
+
+.text-inherit {
+    color: inherit!important;
+}
