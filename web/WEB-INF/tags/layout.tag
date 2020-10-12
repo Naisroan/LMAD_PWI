@@ -48,13 +48,13 @@
             <nav class="navegacion sticky-top shadow">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-3">
+                        <div class="col-1 col-lg-3">
                             <div class="logo h-100 d-flex flex-column justify-content-center">
                                 <h1 class="text-inherit d-none d-lg-inline-block mb-0">Notiapp!</h1>
                                 <h1 class="text-inherit d-inline-block d-lg-none mb-0">N!</h1>
                             </div>
                         </div>
-                        <div class="col-6 text-center text-inherit">
+                        <div class="col-4 col-lg-6 text-center text-inherit">
                             <ul class="list-unstyled d-flex mb-0">
                                 <li class="d-flex">
                                     <a href="#!" class="text-inherit p-3">
@@ -73,7 +73,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-3 text-right">
+                        <div class="col-7 col-lg-3 text-right">
                             <div class="busqueda text-inherit h-100 d-flex flex-column justify-content-center">
                                 <form method="post">
                                     <div class="input-group">
