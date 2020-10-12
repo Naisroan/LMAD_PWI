@@ -36,39 +36,39 @@
         
         <div class="wrapper">
             
-            <div class="notiapp bg-light py-2">
+            <div class="notiapp bg-dark py-2">
                 <div class="container d-flex justify-content-between">
                     <div class="logo">
-                        <h1 class="">Notiapp!</h1>
+                        <h1 class="text-white">Notiapp!</h1>
                     </div>
-                    <div class="busqueda ml-4">
+                    <div class="busqueda text-white ml-4">
                         <form method="post">
                             <div class="input-group">
                                 <span class="input-group-text">
-                                    <i class="fas fa-search fa-fw"></i>
+                                    <i class="fas fa-search text-white fa-fw"></i>
                                 </span>
-                                <input type="text" class="form-control" placeholder="Ingresa tu búsqueda" />
+                                <input type="text" class="form-control  text-white" placeholder="Ingresa tu búsqueda" />
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
             
-            <nav class="navegacion bg-light sticky-top">
+            <nav class="navegacion bg-dark sticky-top">
                 <div class="container">
                     <ul class="list-unstyled d-flex justify-content-between mb-0">
                         <li class="d-flex">
-                            <a href="#!" class="text-dark p-3">
+                            <a href="#!" class="text-white p-3">
                                 <i class="fas fa-user fa-fw"></i>
                             </a>
                         </li>
                         <li class="d-flex">
-                            <a href="#!" class="text-dark p-3">
+                            <a href="#!" class="text-white p-3">
                                 <i class="fas fa-home fa-fw"></i>
                             </a>
                         </li>
                         <li class="d-flex">
-                            <a href="#!" class="text-dark p-3">
+                            <a href="#!" class="text-white p-3">
                                 <i class="fas fa-bars fa-fw"></i>
                             </a>
                         </li>
@@ -76,7 +76,7 @@
                 </div>
             </nav>
             
-            <div class="container">
+            <div class="container-fluid">
                 <jsp:doBody />
             </div>
             

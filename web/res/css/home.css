@@ -1,0 +1,17 @@
+
+/* 
+    Created on : Oct 12, 2020, 12:18:28 PM
+    Author     : ianso
+*/
+body {
+    background-color: whitesmoke;
+}
+
+div.encabezado.fix {
+    top: 0;
+    margin-top: 5rem;
+}
+
+div.segundo.encabezado {
+    right: 0;
+}

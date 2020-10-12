@@ -38,7 +38,7 @@
                         <h1 class="font-weight-bolder display-1 mt-5 mb-4 mask" style="color: #0ddcfd">
                             NotiApp!
                         </h1>
-                        <h2 class="text-dark">Descubre las noticias mas relevantes del momento</h2>
+                        <h2 class="text-dark">Descubre las noticias mas relevantes de los videojuegos del momento</h2>
                     </div>
                     <div class="col-12 col-lg-4">
                         <div class="box shadow">
@@ -62,7 +62,7 @@
                                     </div>
                                    
                                 </div>
-                                <div class="col-12 mb-5">
+                                <div class="col-12 mb-4">
                                     <div class="input-group">
                                         <span class="input-group-text">
                                             <i class="fas fa-key fa-fw"></i>
@@ -73,6 +73,14 @@
                                         type="password" 
                                         class="form-control form-control-lg"
                                         placeholder="Contraseña" />
+                                    </div>
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <div class="form-check">
+                                        <input id="chkMantenerSesion" name="chkMantenerSesion" class="form-check-input" type="checkbox" value="">
+                                        <label class="form-check-label text-white" for="chkMantenerSesion">
+                                          Mantener Sesión
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="col-12 mb-4">

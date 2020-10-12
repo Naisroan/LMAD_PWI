@@ -14,34 +14,52 @@
     </jsp:attribute>
     
     <jsp:attribute name="styles">
+        <link href="../res/css/home.css" type="text/css" rel="stylesheet" />
+        <link href="../res/css/navegacion-home.css" type="text/css" rel="stylesheet" />
     </jsp:attribute>
     
     <jsp:attribute name="scripts">
+        <script type="text/javascript" src="../res/js/home.js"></script>
     </jsp:attribute>
     
     <jsp:body>
         <div class="row mt-5">
             
-            <div class="d-none d-lg-block col-12 col-lg-4 sticky-top">
-                <div class="encabezado">
-                    <div class="d-flex align-items-center">
-                        <img src="http://lorempixel.com/60/60/" height="60" width="60" class="rounded-circle mr-3" />
+            <div class="encabezado d-none d-lg-block col-12 col-lg-2 position-fixed">
+                <div class="text-dark">
+                    <div class="d-flex align-items-center mb-5">
+                        <img src="https://picsum.photos/60/60" height="60" width="60" class="rounded-circle mr-3" />
                         <div class="">
                             <h5 class="mb-1">naisroan</h5>
                             <small class="text-muted">Creador de contenidos</small>
                         </div>
                     </div>
-                    <hr />
+                    <div class="acciones text-dark">
+                        <div class="mb-3">
+                            <small class="text-primary">
+                                ACCIONES
+                            </small>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li class="nav-item">
+                                <a href="#!" class="nav-link d-flex flex-row align-items-center">
+                                    <i class="fas fa-plus fa-fw mr-3"></i>
+                                    <h6 class="mb-0">Crear publicación</h6>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             
-            <div class="col-12 col-lg-8">
+            <div class="col-12 col-lg-4 offset-lg-4">
                 
+                <!--
                 <div class="post_nuevo mb-5">
                     <form method="post">
                         <div class="row g-3">
                             <div class="col-12 d-flex align-items-center">
-                                <img src="http://lorempixel.com/60/60/" height="60" width="60" class="rounded-circle mr-3" />
+                                <img src="https://picsum.photos/60/60" height="60" width="60" class="rounded-circle mr-3" />
                                 <textarea class="form-control" rows="2" cols="1" placeholder="Crea una nueva noticia"></textarea>
                             </div>
                             <div class="col-12 text-right">
@@ -55,9 +73,10 @@
                         </div>
                     </form>
                 </div>
+                -->
                 
                 <div class="card w-100 mb-5">
-                    <img src="http://lorempixel.com/800/600/" class="card-img-top" alt="">
+                    <img src="https://picsum.photos/800/600" class="card-img-top" alt="">
                     <div class="card-body">
                         <h5 class="card-title">Lorem</h5>
                         <p class="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
@@ -68,14 +87,14 @@
                         </div>
                         <div class="comentarios">
                             <div class="comentario d-flex p-2 mb-2">
-                                <img src="http://lorempixel.com/60/60/" height="40" width="40" class="rounded-circle mr-3" />
+                                <img src="http://picsum.photos/60/60/" height="40" width="40" class="rounded-circle mr-3" />
                                 <div class="contenido">
                                     <h6>Michi49</h6>
                                     <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                                 </div>
                             </div>
                             <div class="comentario d-flex p-2 mb-2">
-                                <img src="http://lorempixel.com/60/60/" height="40" width="40" class="rounded-circle mr-3" />
+                                <img src="http://picsum.photos/60/60/" height="40" width="40" class="rounded-circle mr-3" />
                                 <div class="contenido">
                                     <h6>Doggy21</h6>
                                     <p class="">sed do eiusmod tempor incididunt ut labore.</p>
@@ -86,7 +105,7 @@
                             <form method="post">
                                 <div class="row g-3">
                                     <div class="col-12 d-flex align-items-center">
-                                        <img src="http://lorempixel.com/60/60/" height="60" width="60" class="rounded-circle mr-3" />
+                                        <img src="http://picsum.photos/60/60/" height="60" width="60" class="rounded-circle mr-3" />
                                         <textarea class="form-control" rows="2" cols="1" placeholder="Ingresa tu comentario"></textarea>
                                     </div>
                                     <div class="col-12 text-right">
@@ -101,7 +120,7 @@
                 </div>
                 
                 <div class="card w-100 mb-5">
-                    <img src="http://lorempixel.com/800/600/" class="card-img-top" alt="">
+                    <img src="http://picsum.photos/800/600/" class="card-img-top" alt="">
                     <div class="card-body">
                         <h5 class="card-title">Lorem</h5>
                         <p class="card-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
@@ -112,14 +131,14 @@
                         </div>
                         <div class="comentarios">
                             <div class="comentario d-flex p-2 mb-2">
-                                <img src="http://lorempixel.com/60/60/" height="40" width="40" class="rounded-circle mr-3" />
+                                <img src="http://picsum.photos/60/60/" height="40" width="40" class="rounded-circle mr-3" />
                                 <div class="contenido">
                                     <h6>Michi49</h6>
                                     <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                                 </div>
                             </div>
                             <div class="comentario d-flex p-2 mb-2">
-                                <img src="http://lorempixel.com/60/60/" height="40" width="40" class="rounded-circle mr-3" />
+                                <img src="http://picsum.photos/60/60/" height="40" width="40" class="rounded-circle mr-3" />
                                 <div class="contenido">
                                     <h6>Doggy21</h6>
                                     <p class="">sed do eiusmod tempor incididunt ut labore.</p>
@@ -130,7 +149,7 @@
                             <form method="post">
                                 <div class="row g-3">
                                     <div class="col-12 d-flex align-items-center">
-                                        <img src="http://lorempixel.com/60/60/" height="60" width="60" class="rounded-circle mr-3" />
+                                        <img src="http://picsum.photos/60/60/" height="60" width="60" class="rounded-circle mr-3" />
                                         <textarea class="form-control" rows="2" cols="1" placeholder="Ingresa tu comentario"></textarea>
                                     </div>
                                     <div class="col-12 text-right">
@@ -144,6 +163,9 @@
                     </div>
                 </div>
                 
+            </div>
+            
+            <div class="segundo encabezado d-none d-lg-block col-12 col-lg-4 position-fixed">
             </div>
             
         </div>
