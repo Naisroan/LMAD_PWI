@@ -1,7 +1,7 @@
-# LMAD_PWI
+# LMAD_PWI - Notiapp!
 _Sitio web de noticias para proyecto final de la materia Programación Web I_
 
-## Reqiusitos 📦
+## Requisitos 📦
 
 _En la carpeta others estan los .jar que se necesitan por si marca error de archivos faltantes_
 
