@@ -24,7 +24,6 @@
     
     <jsp:body>
         <div class="row mt-5">
-            
             <div class="encabezado d-none d-lg-block col-12 col-lg-2 position-fixed">
                 <div class="text-white">
                     <div class="d-flex align-items-center mb-5">

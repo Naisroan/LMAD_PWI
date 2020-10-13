@@ -1,0 +1,30 @@
+/* 
+    Created on : Oct 12, 2020, 9:52:17 PM
+    Author     : ianso
+*/
+
+.badge {
+    font-weight: normal;
+}
+
+.comentario {
+    transition-duration: 0.3s;
+}
+
+.comentario:hover {
+    background-color: whitesmoke;
+}
+
+.comentario .comentario,
+.comentario .comentario .footer {
+    margin-bottom: 0 !important;
+    padding-right: 0 !important;
+}
+
+.comentario .comentario {
+    margin-left: 3rem;
+}
+
+.stars .checked {
+  color: orange;
+}
