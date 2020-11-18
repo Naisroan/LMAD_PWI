@@ -11,7 +11,7 @@
 }
 
 .navegacion,
-.navegacion ul li a,
+.navegacion ul.list-unstyled li a,
 .navegacion form .input-group .form-control::placeholder {    
     color: white;
 }

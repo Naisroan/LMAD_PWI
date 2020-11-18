@@ -15,6 +15,10 @@
         <servlet-name>RegisterController</servlet-name>
         <servlet-class>Controller.RegisterController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HomeController</servlet-name>
+        <servlet-class>Controller.HomeController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AccountController</servlet-name>
         <url-pattern>/AccountController</url-pattern>
@@ -27,6 +31,10 @@
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/RegisterController</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeController</servlet-name>
+        <url-pattern>/HomeController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             120
@@ -35,14 +43,13 @@
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
-
     <jsp-config>
         <jsp-property-group>
             <url-pattern>*.jsp</url-pattern>
             <scripting-invalid>false</scripting-invalid>
         </jsp-property-group>
         <jsp-property-group>
-            <url-pattern>*.tag</url-pattern>                
+            <url-pattern>*.tag</url-pattern>
             <scripting-invalid>false</scripting-invalid>
         </jsp-property-group>
     </jsp-config>

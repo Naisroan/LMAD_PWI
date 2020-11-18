@@ -4,6 +4,12 @@
 <%@attribute name="styles" fragment="true" %>
 <%@attribute name="scripts" fragment="true" %>
 
+<%@taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix = "sql" uri = "http://java.sun.com/jsp/jstl/sql" %>
+<%@taglib prefix = "x" uri = "http://java.sun.com/jsp/jstl/xml" %>
+<%@taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,15 +24,15 @@
         <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500&display=swap" rel="stylesheet">
         
         <!-- fontawesome -->
-        <link rel="stylesheet" href="../res/lib/fontawesome/css/all.min.css">
+        <link rel="stylesheet" href="<c:url value='/res/lib/fontawesome/css/all.min.css'/>">
         
         <!-- bootstrap -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
         
         <!-- first party -->
-        <link rel="stylesheet" href="../res/css/menu.css">
-        <link rel="stylesheet" href="../res/lib/bootstrap/mods.css">
-        <link rel="stylesheet" href="../res/css/site.css">
+        <link rel="stylesheet" href="<c:url value='/res/css/menu.css'/>">
+        <link rel="stylesheet" href="<c:url value='/res/lib/bootstrap/mods.css'/>">
+        <link rel="stylesheet" href="<c:url value='/res/css/site.css'/>">
         
         <!-- styles pages -->
         <jsp:invoke fragment="styles" />
@@ -68,12 +74,33 @@
                                 </li>
                                 <li class="d-flex">
                                     <a href="#!" class="text-inherit p-3">
-                                        <i class="fas fa-bars fa-fw"></i>
+                                        <i class="fas fa-search fa-fw"></i>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <div class="col-7 col-lg-3 text-right">
+                            <div class="text-inherit h-100 d-flex flex-column justify-content-center align-items-end">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary bg-transparent dropdown-toggle d-flex align-items-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                                        <img src="https://picsum.photos/30/30" height="30" width="30" class="rounded-circle mr-3" />
+                                        <div class="">
+                                            <h5 class="mb-0">
+                                                <c:out value="${usuario_logeado.nick}" />
+                                            </h5>
+                                        </div>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <li>
+                                            <a href="${pageContext.request.contextPath}/Logout" class="dropdown-item d-flex flex-row align-items-center">
+                                                <i class="fas fa-sign-out-alt fa-fw mr-3"></i>
+                                                <h6 class="mb-0">Cerrar Sesión</h6>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--
                             <div class="busqueda text-inherit h-100 d-flex flex-column justify-content-center">
                                 <form method="post">
                                     <div class="input-group">
@@ -84,6 +111,7 @@
                                     </div>
                                 </form>
                             </div>
+                            -->
                         </div>
                     </div>   
                 </div>
@@ -106,7 +134,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
         
         <!-- first party -->
-        <script src="../res/js/site.js"></script>
+        <script src="<c:url value='/res/js/site.js'/>"></script>
         
         <!-- scripts pages -->
         <jsp:invoke fragment="scripts" />

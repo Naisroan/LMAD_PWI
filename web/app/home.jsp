@@ -5,7 +5,19 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="ndev" tagdir="/WEB-INF/tags" %>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+
+<%
+
+    if (request.getSession().getAttribute("usuario_logeado") == null)
+    {
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
+    }
+
+%>
 
 <ndev:layout>
     
@@ -14,12 +26,12 @@
     </jsp:attribute>
     
     <jsp:attribute name="styles">
-        <link href="../res/css/home.css" type="text/css" rel="stylesheet" />
-        <link href="../res/css/navegacion-home.css" type="text/css" rel="stylesheet" />
+        <link href="<c:url value='/res/css/home.css'/>" type="text/css" rel="stylesheet" />
+        <link href="<c:url value='/res/css/navegacion-home.css'/>" type="text/css" rel="stylesheet" />
     </jsp:attribute>
     
     <jsp:attribute name="scripts">
-        <script type="text/javascript" src="../res/js/home.js"></script>
+        <script type="text/javascript" src="<c:url value='/res/js/home.js'/>"></script>
     </jsp:attribute>
     
     <jsp:body>
@@ -29,8 +41,12 @@
                     <div class="d-flex align-items-center mb-5">
                         <img src="https://picsum.photos/60/60" height="60" width="60" class="rounded-circle mr-3" />
                         <div class="">
-                            <h5 class="mb-1">naisroan</h5>
-                            <small class="text-muted">Creador de contenidos</small>
+                            <h5 class="mb-1">
+                                <c:out value="${usuario_logeado.nick}" />
+                            </h5>
+                            <small class="text-muted">
+                                <c:out value="${usuario_logeado.id_rol}" />
+                            </small>
                         </div>
                     </div>
                     <div class="acciones text-dark">
@@ -41,7 +57,7 @@
                         </div>
                         <ul class="list-unstyled">
                             <li class="nav-item">
-                                <a href="#!" class="nav-link d-flex flex-row align-items-center">
+                                <a href="<c:url value='/app/notice_detail.jsp?id=0' />" class="nav-link d-flex flex-row align-items-center">
                                     <i class="fas fa-plus fa-fw mr-3"></i>
                                     <h6 class="mb-0">Crear publicación</h6>
                                 </a>

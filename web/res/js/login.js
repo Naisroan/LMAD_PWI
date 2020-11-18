@@ -23,13 +23,15 @@ function frm_loginOnSubmit(e) {
         url: 'GetUsuario',
         data: {
             nick: $('#nick').val(),
-            password: $('#password').val()
+            password: $('#password').val(),
+            mantener_sesion: $('#chkMantenerSesion').is(':checked')
         },
         success: function(result) {
 
             verificarUsuarioObtenido(result);
             limpiarCamposLogin();
             setButtonOnEnabled('#btnIniciarSesion', 'Iniciar Sesión');
+            window.location = "/LMAD_PWI/Home";
         },
         error: function(jqXHR, textStatus, errorThrown) {
 

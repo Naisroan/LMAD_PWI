@@ -4,7 +4,34 @@
     Author     : ianso
 --%>
 
+<%@page import="DAO.UsuarioDAO"%>
+<%@page import="Model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+
+<%
+    Object usuarioLogeado = request.getSession(true).getAttribute("usuario_logeado");
+    
+    if (usuarioLogeado != null)
+    {
+        response.sendRedirect(request.getContextPath() + "/app/home.jsp");
+    }
+    
+    String strUsuarioCookie = request.getParameter("mantener_sesion");
+
+    if (strUsuarioCookie != null && strUsuarioCookie != "")
+    {
+        Usuario usuario = UsuarioDAO.ReadByNick(strUsuarioCookie);
+        
+        if (usuario != null)
+        {
+            request.getSession(true).setAttribute("usuario_logeado", usuario);
+            response.sendRedirect(request.getContextPath() + "/app/home.jsp");
+        }
+    }
+    
+%>
+
 <!DOCTYPE html>
 <html>
     <head>

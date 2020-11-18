@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +28,7 @@ public class LoginController extends HttpServlet {
          
             String strUsuario = request.getParameter("nick");
             String strPassword = request.getParameter("password");
+            Boolean mantenerSesion = Boolean.parseBoolean(request.getParameter("mantener_sesion"));
             
             Usuario usuario = UsuarioDAO.ReadByNick(strUsuario);
             
@@ -38,8 +40,23 @@ public class LoginController extends HttpServlet {
                 return;
             }
             
+            request.getSession(true).setAttribute("usuario_logeado", usuario);
+            
+            if (mantenerSesion)
+            {
+                Cookie cookMantenerSesion = new Cookie("mantener_sesion", String.valueOf(usuario.getId_usuario()));
+                
+                int segundosExpiracion = 60 * 30; // 60 x 30 -> 30 minutos
+                
+                cookMantenerSesion.setMaxAge(segundosExpiracion);
+                
+                response.addCookie(cookMantenerSesion);
+            }
+            
             // si encontro una coincidencia de usuario y contraseña, retorna el usuario
             App.returnJsonSuccess(response, usuario);
+            
+            // response.sendRedirect(request.getContextPath() + "/app/home.jsp");
         }
         catch (Exception ex) {
             
