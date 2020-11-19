@@ -19,7 +19,7 @@ public class Conexion {
     private static final String STR_CONEXION = "jdbc:mysql://localhost:3306";
     private static final String STR_CONEXION_BASEDATOS = "noti_app";
     private static final String STR_CONEXION_USUARIO = "root";
-    private static final String STR_CONEXION_PASSWORD = "a1234567890A";
+    private static final String STR_CONEXION_PASSWORD = "1726916";
     
     private PreparedStatement _PreparedStatment;
     private ResultSet _ResultSet;
