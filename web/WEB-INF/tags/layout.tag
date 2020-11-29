@@ -68,12 +68,12 @@
                                     </a>
                                 </li>
                                 <li class="d-flex">
-                                    <a href="#!" class="text-inherit p-3">
+                                    <a href="<c:url value='/app/home.jsp' />" class="text-inherit p-3">
                                         <i class="fas fa-home fa-fw"></i>
                                     </a>
                                 </li>
                                 <li class="d-flex">
-                                    <a href="#!" class="text-inherit p-3">
+                                    <a href="<c:url value='/app/search.jsp' />" class="text-inherit p-3">
                                         <i class="fas fa-search fa-fw"></i>
                                     </a>
                                 </li>
@@ -90,7 +90,7 @@
                                             </h5>
                                         </div>
                                     </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                                         <li>
                                             <a href="${pageContext.request.contextPath}/Logout" class="dropdown-item d-flex flex-row align-items-center">
                                                 <i class="fas fa-sign-out-alt fa-fw mr-3"></i>
