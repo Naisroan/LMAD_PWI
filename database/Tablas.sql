@@ -45,14 +45,21 @@ CREATE TABLE IF NOT EXISTS noticia #CREATE DELETE UPDATE SHOW BASICO **
 (
 	id_noticia		INT 			AUTO_INCREMENT 		PRIMARY KEY,
     titulo			VARCHAR(30)		NOT NULL,
-    desc_corta		VARCHAR(30)		NOT NULL, 
+    desc_corta		VARCHAR(300)	NOT NULL, 
     noticia			VARCHAR(1000)	NOT NULL,
+    aprobada		BIT				NOT NULL,
+    comentario_aprobacion VARCHAR(300) NULL,
     id_categoria	INT				NULL,	
     id_usuario		INT				NULL,
     
 	FOREIGN KEY (id_categoria)	REFERENCES categorias(id_categoria),	
     FOREIGN KEY (id_usuario)	REFERENCES usuario(id_usuario)
 );
+
+-- ALTER TABLE noticia MODIFY desc_corta VARCHAR(300) NOT NULL
+-- ALTER TABLE noticia MODIFY titulo VARCHAR(100) NOT NULL
+-- ALTER TABLE noticia ADD aprobada BIT NOT NULL
+-- ALTER TABLE noticia ADD comentario_aprobacion VARCHAR(300) NULL
 
 #OTRA CONSULTA DE COMENTARIOS DE UN COMENTARIO BUSCARLO CON COMENTARIO PADRE CHECK **
 CREATE TABLE IF NOT EXISTS comentario #CREATE DELETE MOSTRAR TODOS LOS COMENTARIOS DE UNA NOTICIA BUSCARLOS CON ID NOTICIA CHECK **
@@ -83,13 +90,17 @@ CREATE TABLE IF NOT EXISTS valoracion #CREATE DELETE UPDATE SHOW DESPUES **
     FOREIGN KEY (id_noticia)	REFERENCES noticia(id_noticia),
     FOREIGN KEY (id_comentario)	REFERENCES comentario(id_comentario) 
 );
+-- ALTER TABLE valoracion ADD tipo_valoracion INT NOT NULL
+-- ALTER TABLE valoracion DROP FOREIGN KEY valoracion_ibfk_3;
 
 CREATE TABLE IF NOT EXISTS noticia_multimedia #CREATE DELETE UPDATE SHOW ID NOTICIA  **
 (
 	id_noticia_multimedia	INT 			AUTO_INCREMENT		PRIMARY KEY, 
     id_noticia				INT 			NOT NULL, 
 	ruta					VARCHAR(250) 	NULL,
-    tipo_contenido			INT 			NOT NULL, #1 imagen 2 video
+    tipo_contenido			VARCHAR(30)		NULL, #1 imagen 2 video
     
     FOREIGN KEY (id_noticia)	REFERENCES noticia(id_noticia)
 );
+
+-- ALTER TABLE noticia_multimedia MODIFY tipo_contenido VARCHAR(30)		NULL;

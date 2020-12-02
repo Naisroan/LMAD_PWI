@@ -6,6 +6,7 @@
 package Model;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -18,6 +19,10 @@ public class Comentario {
     private int id_usuario;
     private int id_noticia;
     private int id_comentario_padre;
+    private String nick;
+    private String avatar;
+    private Valoracion valoracion;
+    private List<Comentario> comentarios;
 
     /**
      * @return the id_comentario
@@ -101,6 +106,62 @@ public class Comentario {
      */
     public void setId_comentario_padre(int id_comentario_padre) {
         this.id_comentario_padre = id_comentario_padre;
+    }
+
+    /**
+     * @return the nick
+     */
+    public String getNick() {
+        return nick;
+    }
+
+    /**
+     * @param nick the nick to set
+     */
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    /**
+     * @return the avatar
+     */
+    public String getAvatar() {
+        return avatar;
+    }
+
+    /**
+     * @param avatar the avatar to set
+     */
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    /**
+     * @return the comentarios
+     */
+    public List<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    /**
+     * @param comentarios the comentarios to set
+     */
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    /**
+     * @return the valoracion
+     */
+    public Valoracion getValoracion() {
+        return valoracion;
+    }
+
+    /**
+     * @param valoracion the valoracion to set
+     */
+    public void setValoracion(Valoracion valoracion) {
+        this.valoracion = valoracion;
     }
    
 

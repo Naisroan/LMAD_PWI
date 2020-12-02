@@ -25,6 +25,54 @@
     margin-left: 3rem;
 }
 
+.comentario .nuevo_sub_comentario {
+    margin-left: 3rem;
+    margin-top: 1rem;
+}
+
+.comentario .footer .fas {
+    cursor: pointer;
+    color: darkgray;
+    transition-duration: 0.3s;
+    text-decoration: none;
+}
+
+.comentario .footer .fas:hover {
+    color: black;
+}
+
+.comentario .footer .fas.active {
+    color: dodgerblue !important;
+}
+
+.favorita .fas {
+    cursor: pointer;
+    color: darkgray;
+    transition-duration: 0.3s;
+    text-decoration: none;
+}
+
+.favorita .fas:hover {
+    color: indianred;
+}
+
+.favorita .fas.active {
+    color: red !important;
+}
+
 .stars .checked {
   color: orange;
+}
+
+.carousel-inner {
+    background-color: black;
+    max-height: 600px;
+}
+
+.carousel video {
+    max-height: 600px;
+}
+
+.carousel img {
+    margin: 0 auto;
 }

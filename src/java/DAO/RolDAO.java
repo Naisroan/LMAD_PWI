@@ -19,8 +19,10 @@ public class RolDAO {
     
     public static Rol ReadByUsuario(String id) throws Exception{
     
-        try{
-            StoredProcedure sp = new StoredProcedure(STR_SP_ReadByUsuario);
+        StoredProcedure sp = null;
+                    
+        try {
+            sp = new StoredProcedure(STR_SP_ReadByUsuario);
             sp.agregarParametro("p_id_usuario", Integer.parseInt(id));
             
             ResultSet rs = sp.select();
@@ -33,6 +35,8 @@ public class RolDAO {
         catch(SQLException ex){
             
             throw ex;
+        } finally {
+            sp.close();
         }
     }
     

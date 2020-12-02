@@ -19,6 +19,10 @@
         <servlet-name>HomeController</servlet-name>
         <servlet-class>Controller.HomeController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PublicacionController</servlet-name>
+        <servlet-class>Controller.NoticiaController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AccountController</servlet-name>
         <url-pattern>/AccountController</url-pattern>
@@ -34,6 +38,10 @@
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/HomeController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PublicacionController</servlet-name>
+        <url-pattern>/PublicacionController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

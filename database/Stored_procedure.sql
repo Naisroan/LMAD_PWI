@@ -13,8 +13,13 @@ DROP PROCEDURE IF EXISTS sp_noticia_create;
 DROP PROCEDURE IF EXISTS sp_noticia_delete;
 DROP PROCEDURE IF EXISTS sp_noticia_update;
 DROP PROCEDURE IF EXISTS sp_noticia_read;
+DROP PROCEDURE IF EXISTS sp_noticia_readAll;
+DROP PROCEDURE IF EXISTS sp_noticia_readLast;
+DROP PROCEDURE IF EXISTS sp_noticia_aprobar;
 
 DROP PROCEDURE IF EXISTS sp_categorias_read;
+DROP PROCEDURE IF EXISTS sp_categorias_readAll;
+DROP PROCEDURE IF EXISTS sp_categorias_readByNombre;
 
 DROP PROCEDURE IF EXISTS sp_comentario_create;
 DROP PROCEDURE IF EXISTS sp_comentario_delete;
@@ -46,7 +51,7 @@ CREATE PROCEDURE sp_usuario_create -- call sp_usuario_create (NULL, 'iansolis98@
     IN p_ruta_imagen	VARCHAR(250)
 )
 BEGIN
-
+	
 	INSERT INTO		usuario(id_rol, correo, nick, pass, ruta_imagen)
     VALUES			(p_id_rol, p_correo, p_nick, p_pass, p_ruta_imagen);
 	
@@ -97,7 +102,7 @@ DELIMITER ;
 
 DELIMITER //
 
-CREATE PROCEDURE sp_usuario_read -- call sp_usuario_read (1);
+CREATE PROCEDURE sp_usuario_read -- call sp_usuario_read (2);
 (
 	IN p_id_usuario 		INT
 )
@@ -192,16 +197,16 @@ DELIMITER //
 CREATE PROCEDURE sp_noticia_create
 (
 	IN p_titulo			VARCHAR(30),
-    IN p_desc_corta		VARCHAR(30),
+    IN p_desc_corta		VARCHAR(300),
     IN p_noticia		VARCHAR(1000),
     IN p_id_categoria	INT,
     IN p_id_usuario		INT
 )
 BEGIN 
 	INSERT INTO noticia(titulo, desc_corta, noticia, 
-						id_categoria, id_usuario)
+						id_categoria, id_usuario, aprobada)
 	VALUES 		(p_titulo, p_desc_corta, p_noticia, 
-						p_id_categoria, p_id_usuario);
+						p_id_categoria, p_id_usuario, false);
     
 END //
 
@@ -215,6 +220,15 @@ CREATE PROCEDURE sp_noticia_delete
 )
 BEGIN
 
+	DELETE FROM		valoracion v
+    WHERE			v.id_noticia = p_id_noticia;
+
+	DELETE FROM		noticia_multimedia nm
+    WHERE			nm.id_noticia = p_id_noticia;
+
+	DELETE FROM		comentario c
+    WHERE			c.id_noticia = p_id_noticia;
+
 	DELETE FROM		noticia n
     WHERE			n.id_noticia = p_id_noticia;
 
@@ -226,8 +240,8 @@ DELIMITER //
 CREATE PROCEDURE sp_noticia_update
 (
 	IN p_id_noticia		INT, 
-    IN p_titulo			VARCHAR(30)	,
-    IN p_desc_corta		VARCHAR(30)	,
+    IN p_titulo			VARCHAR(30),
+    IN p_desc_corta		VARCHAR(300),
 	IN p_noticia		VARCHAR(1000),	
     IN p_id_categoria	INT	,
     IN p_id_usuario		INT
@@ -246,7 +260,25 @@ END //
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE sp_noticia_read
+CREATE PROCEDURE sp_noticia_aprobar
+(
+	IN p_id_noticia				INT,
+	IN p_aprobada				BIT,
+    IN p_comentario_aprobacion	VARCHAR(300)
+)
+BEGIN 
+
+	UPDATE 		noticia
+	SET			aprobada = p_aprobada,
+				comentario_aprobacion = p_comentario_aprobacion
+                
+	WHERE 		id_noticia = p_id_noticia;
+    
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_noticia_read -- CALL sp_noticia_read(2);
 (
 	IN p_id_noticia		INT 
 )
@@ -256,12 +288,61 @@ BEGIN
 				n.desc_corta,	
 				n.noticia,	
 				n.id_categoria,
-				n.id_usuario
-	FROM 	noticia n
-	WHERE 	n.id_noticia = p_id_noticia;
+				n.id_usuario,
+                n.aprobada,
+                n.comentario_aprobacion,
+                IFNULL((SELECT m.ruta FROM noticia_multimedia m WHERE m.id_noticia = n.id_noticia LIMIT 1), '') AS thumbnail
+	FROM 		noticia n
+	WHERE 		n.id_noticia = p_id_noticia
+    LIMIT		1;
 
 END //
 DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_noticia_readAll #call sp_noticia_readAll (0)
+(
+	IN p_aprobada  INT
+)
+BEGIN
+
+	SELECT 		n.id_noticia, 
+				n.titulo,
+				n.desc_corta,	
+				n.noticia,	
+				n.id_categoria,
+				n.id_usuario,
+                n.aprobada,
+                n.comentario_aprobacion,
+                IFNULL((SELECT m.ruta FROM noticia_multimedia m WHERE m.id_noticia = n.id_noticia LIMIT 1), '') AS thumbnail
+	FROM 		noticia n
+    WHERE		(n.aprobada = IF(p_aprobada = 1, true, false) OR p_aprobada = 2)
+    ORDER BY    n.id_noticia DESC;
+
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_noticia_readLast
+(
+)
+BEGIN 
+
+	SELECT 		n.id_noticia, 
+				n.titulo,
+				n.desc_corta,	
+				n.noticia,	
+				n.id_categoria,
+				n.id_usuario,
+                n.aprobada,
+                n.comentario_aprobacion,
+                IFNULL((SELECT m.ruta FROM noticia_multimedia m WHERE m.id_noticia = n.id_noticia LIMIT 1), '') AS thumbnail
+	FROM 		noticia n
+    ORDER BY 	n.id_noticia DESC LIMIT 1;
+
+END //
+DELIMITER ;
+
 
 #STORED PROCEDURE CATEGORIAS
 DELIMITER //
@@ -274,6 +355,34 @@ BEGIN
 				c.nombre
 	FROM 		categorias c
     WHERE 		c.id_categoria = p_id_categoria;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_categorias_readByNombre
+(
+	IN p_nombre	VARCHAR(30)
+)
+BEGIN 
+	SELECT			c.id_categoria,
+					c.nombre
+	FROM 			categorias c
+    WHERE 			c.nombre = p_nombre
+    LIMIT			1;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_categorias_readAll -- CALL sp_categorias_readAll
+(
+)
+BEGIN 
+	SELECT 		c.id_categoria,
+				c.nombre
+	FROM 		categorias c;
 END //
 
 DELIMITER ;
@@ -349,16 +458,20 @@ DELIMITER ;
 
 #STORED PROCEDURE ROL 
 DELIMITER //
-CREATE PROCEDURE sp_rol_readByUsuario
+CREATE PROCEDURE sp_rol_readByUsuario -- call sp_rol_readByUsuario (2);
 (
 	IN p_id_usuario INT
     
 )
 BEGIN 
-	SELECT id_rol, nombre
-    FROM rol r 
-    INNER JOIN usuario u ON r.id_rol = u.id_rol
-    WHERE u.id_usuario = p_id_usuario;
+
+	SELECT 		r.id_rol,
+				r.nombre
+    FROM 		rol r 
+    INNER JOIN 	usuario u ON r.id_rol = u.id_rol
+    WHERE 		u.id_usuario = p_id_usuario
+    LIMIT		1;
+    
 END //
 
 DELIMITER ; 
@@ -433,7 +546,7 @@ CREATE PROCEDURE sp_noticia_multimedia_create
 (
 	IN p_id_noticia				INT, 			
     IN p_ruta					VARCHAR(250), 	
-    IN p_tipo_contenido			INT 			
+    IN p_tipo_contenido			VARCHAR(30)		
 )
 BEGIN 
 	INSERT INTO noticia_multimedia(id_noticia, ruta, tipo_contenido)
@@ -458,7 +571,7 @@ CREATE PROCEDURE sp_noticia_multimedia_update
 	IN p_id_noticia_multimedia 	INT,
     IN p_id_noticia				INT, 			
     IN p_ruta					VARCHAR(250), 	
-    IN p_tipo_contenido			INT 	
+    IN p_tipo_contenido			VARCHAR(30)
 )
 BEGIN 
 	UPDATE 		noticia_multimedia
@@ -471,7 +584,7 @@ END //
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE sp_noticia_multimedia_readBynoticia
+CREATE PROCEDURE sp_noticia_multimedia_readBynoticia -- CALL sp_noticia_multimedia_readBynoticia(1);
 (
 	IN p_id_noticia 	INT
 )

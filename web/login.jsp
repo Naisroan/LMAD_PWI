@@ -17,17 +17,28 @@
         response.sendRedirect(request.getContextPath() + "/app/home.jsp");
     }
     
-    String strUsuarioCookie = request.getParameter("mantener_sesion");
+    Cookie[] cookies = null;
+    cookies = request.getCookies();
 
-    if (strUsuarioCookie != null && strUsuarioCookie != "")
-    {
-        Usuario usuario = UsuarioDAO.ReadByNick(strUsuarioCookie);
+    if(cookies != null) {
         
-        if (usuario != null)
-        {
-            request.getSession(true).setAttribute("usuario_logeado", usuario);
-            response.sendRedirect(request.getContextPath() + "/app/home.jsp");
-        }
+        for (int i = 0; i < cookies.length; i++) {
+            
+            Cookie cookie = cookies[i];
+
+            if(cookie.getName() == "mantener_sesion") {
+                
+                Usuario usuario = UsuarioDAO.ReadByNick(String.valueOf(cookie.getValue()));
+
+                if (usuario != null) {
+                    
+                    request.getSession(true).setAttribute("usuario_logeado", usuario);
+                    response.sendRedirect(request.getContextPath() + "/app/home.jsp");
+                }
+                
+                break;
+            }
+         }
     }
     
 %>
@@ -113,6 +124,11 @@
                                 <div class="col-12 mb-4">
                                     <button id="btnIniciarSesion" name="btnIniciarSesion" class="btn btn-primary btn-block btn-lg">
                                         Iniciar Sesión
+                                    </button>
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <button id="btnAnonimo" name="btnAnonimo" type="button" class="btn btn-dark btn-block btn-lg" onclick="modoAnonimo();">
+                                        Modo Anónimo
                                     </button>
                                 </div>
                                 <div class="col-12 text-center">

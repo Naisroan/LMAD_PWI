@@ -20,6 +20,7 @@ public class Valoracion {
     private int valoracion_noticia;
     private boolean valoracion_comentario;
     private Date fecha_hora;
+    private int tipo_valoracion;
 
     /**
      * @return the id_valoracion
@@ -131,5 +132,19 @@ public class Valoracion {
      */
     public void setFecha_hora(Date fecha_hora) {
         this.fecha_hora = fecha_hora;
+    }
+
+    /**
+     * @return the tipo_valoracion
+     */
+    public int getTipo_valoracion() {
+        return tipo_valoracion;
+    }
+
+    /**
+     * @param tipo_valoracion the tipo_valoracion to set
+     */
+    public void setTipo_valoracion(int tipo_valoracion) {
+        this.tipo_valoracion = tipo_valoracion;
     }
 }

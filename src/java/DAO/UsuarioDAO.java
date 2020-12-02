@@ -24,9 +24,11 @@ public class UsuarioDAO {
 
     public static Boolean Create(Usuario nodo) throws Exception {
         
+        StoredProcedure sp = null;
+        
         try {
             
-            StoredProcedure sp = new StoredProcedure(STR_SP_Create);
+            sp = new StoredProcedure(STR_SP_Create);
             
             sp.agregarParametro("p_id_rol", nodo.getId_rol());
             sp.agregarParametro("p_correo", nodo.getCorreo());
@@ -39,14 +41,18 @@ public class UsuarioDAO {
         catch (SQLException ex) {
             
             throw ex;
+        } finally {
+            sp.close();
         }
     }
 
     public static Boolean Update(Usuario nodo) throws Exception {
         
+        StoredProcedure sp = null;
+        
         try {
             
-            StoredProcedure sp = new StoredProcedure(STR_SP_Update);
+            sp = new StoredProcedure(STR_SP_Update);
             
             sp.agregarParametro("p_id_usuario", nodo.getId_usuario());
             sp.agregarParametro("p_id_rol", nodo.getId_rol());
@@ -60,14 +66,18 @@ public class UsuarioDAO {
         catch (SQLException ex) {
             
             throw ex;
+        } finally {
+            sp.close();
         }
     }
 
     public static Boolean Delete(String id) throws Exception {
         
+        StoredProcedure sp = null;
+        
         try {
             
-            StoredProcedure sp = new StoredProcedure(STR_SP_Delete);
+            sp = new StoredProcedure(STR_SP_Delete);
             sp.agregarParametro("p_id_usuario", Integer.parseInt(id));
         
             return sp.insert();
@@ -75,14 +85,18 @@ public class UsuarioDAO {
         catch (SQLException ex) {
             
             throw ex;
+        } finally {
+            sp.close();
         }
     }
 
     public static Usuario Read(String id) throws Exception {
         
+        StoredProcedure sp = null;
+        
         try {
             
-            StoredProcedure sp = new StoredProcedure(STR_SP_Read);
+            sp = new StoredProcedure(STR_SP_Read);
             sp.agregarParametro("p_id_usuario", Integer.parseInt(id));
             
             ResultSet rs = sp.select();
@@ -97,14 +111,18 @@ public class UsuarioDAO {
         catch (SQLException ex) {
             
             throw ex;
+        } finally {
+            sp.close();
         }
     }
 
     public static Usuario ReadByNick(String nick) throws Exception {
         
+        StoredProcedure sp = null;
+        
         try {
             
-            StoredProcedure sp = new StoredProcedure(STR_SP_ReadByNick);
+            sp = new StoredProcedure(STR_SP_ReadByNick);
             sp.agregarParametro("p_nick", nick);
             
             ResultSet rs = sp.select();
@@ -117,16 +135,19 @@ public class UsuarioDAO {
             return null;
         } 
         catch (SQLException ex) {
-            
             throw ex;
+        } finally {
+            sp.close();
         }
     }
 
     public static Usuario ReadByCorreo(String correo) throws Exception {
         
+        StoredProcedure sp = null;
+        
         try {
             
-            StoredProcedure sp = new StoredProcedure(STR_SP_ReadByCorreo);
+            sp = new StoredProcedure(STR_SP_ReadByCorreo);
             sp.agregarParametro("p_correo", correo);
             
             ResultSet rs = sp.select();
@@ -141,17 +162,20 @@ public class UsuarioDAO {
         catch (SQLException ex) {
             
             throw ex;
+        } finally {
+            sp.close();
         }
     }
 
     public static List ReadAll() throws Exception {
         
+        StoredProcedure sp = null;
         ArrayList<Usuario> lista;
         lista = new ArrayList<>();
         
         try {
             
-            StoredProcedure sp = new StoredProcedure(STR_SP_ReadAll);
+            sp = new StoredProcedure(STR_SP_ReadAll);
             ResultSet rs = sp.select();
             
             while (rs.next()) {
@@ -164,6 +188,8 @@ public class UsuarioDAO {
         catch (SQLException ex) {
             
             throw ex;
+        } finally {
+            sp.close();
         }
     }
 

@@ -7,8 +7,11 @@ package DAO;
 
 import Class.StoredProcedure;
 import Model.Comentario;
+import Model.Valoracion;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -23,74 +26,95 @@ public class ComentarioDAO {
     
     public static Boolean Create(Comentario nodo) throws Exception{
     
+        StoredProcedure sp = null;
+            
         try{
-            StoredProcedure sp = new StoredProcedure(STR_SP_Create);
+            sp = new StoredProcedure(STR_SP_Create);
             
             sp.agregarParametro("p_descripcion", nodo.getDescripcion());
             sp.agregarParametro("p_id_usuario", nodo.getId_usuario());
             sp.agregarParametro("p_id_noticia", nodo.getId_noticia());
-            sp.agregarParametro("fecha_hora", nodo.getFecha_hora());
+            sp.agregarParametro("p_id_comentario_padre", nodo.getId_comentario_padre());
+            // sp.agregarParametro("fecha_hora", nodo.getFecha_hora());
             
             return sp.insert();
         }
         catch(SQLException ex){
             throw ex;
+        } finally {
+            sp.close();
         }
         
     }
     
     public static Boolean Delete(String id) throws Exception{
     
+        StoredProcedure sp = null;
+    
         try{
-            StoredProcedure sp = new StoredProcedure(STR_SP_Delete);
+            sp = new StoredProcedure(STR_SP_Delete);
             sp.agregarParametro("p_id_comentario", Integer.parseInt(id));
             
             return sp.insert();
         }
         catch(SQLException ex){
             throw ex;
+        } finally {
+            sp.close();
         }
     }
     
-    public static Comentario ReadByNoticia(String id) throws Exception{
-    
-        try{
-            StoredProcedure sp = new StoredProcedure(STR_SP_ReadByNoticia);
-            sp.agregarParametro("p_id_noticia", Integer.parseInt(id));
+    public static List<Comentario> ReadByNoticia(String id) throws Exception{
+        
+        StoredProcedure sp = null;
+        ArrayList<Comentario> lista;
+        lista = new ArrayList<>();
+        
+        try {
             
+            sp = new StoredProcedure(STR_SP_ReadByNoticia);
+            sp.agregarParametro("p_id_noticia", Integer.parseInt(id));
             ResultSet rs = sp.select();
             
-            while(rs.next()){
-                return (Comentario)Parse(rs);
+            while (rs.next()) {
+               
+                lista.add((Comentario)Parse(rs));
             }
-            return null;
-        }
-        catch(SQLException ex){
+        
+            return lista;
+        } 
+        catch (SQLException ex) {
+            
             throw ex;
-
+        } finally {
+            sp.close();
         }
     }
     
-    public static Comentario ReadByComentarioPadre(String id) throws Exception{
+    public static List<Comentario> ReadByComentarioPadre(String id) throws Exception{
+    
+        StoredProcedure sp = null;
+        ArrayList<Comentario> lista;
+        lista = new ArrayList<>();
     
         try{
-            StoredProcedure sp = new StoredProcedure(STR_SP_ReadByComentarioPadre);
+            sp = new StoredProcedure(STR_SP_ReadByComentarioPadre);
             sp.agregarParametro("p_id_comentario_padre", Integer.parseInt(id));
             
             ResultSet rs = sp.select();
             
             while(rs.next()){
-                return (Comentario)Parse(rs);
+                lista.add((Comentario)Parse(rs));
             }
-            return null;
+        
+            return lista;
         }
         
         catch(SQLException ex){
             throw ex;
+        } finally {
+            sp.close();
         }
-        
-        
-    
     }
     
     public static Comentario Parse(ResultSet rs) throws SQLException{
@@ -103,6 +127,10 @@ public class ComentarioDAO {
         nodo.setId_usuario(rs.getInt("id_usuario"));
         nodo.setId_noticia(rs.getInt("id_noticia"));
         nodo.setId_comentario_padre(rs.getInt("id_comentario_padre"));
+        nodo.setNick(rs.getString("nick"));
+        nodo.setAvatar(rs.getString("avatar"));
+        nodo.setComentarios(new ArrayList<>());
+        nodo.setValoracion(new Valoracion());
         
         return nodo;
     }

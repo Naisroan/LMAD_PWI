@@ -28,16 +28,57 @@ public class LoginController extends HttpServlet {
          
             String strUsuario = request.getParameter("nick");
             String strPassword = request.getParameter("password");
+            Boolean esAnonimo = Boolean.parseBoolean(request.getParameter("esAnonimo"));
             Boolean mantenerSesion = Boolean.parseBoolean(request.getParameter("mantener_sesion"));
             
-            Usuario usuario = UsuarioDAO.ReadByNick(strUsuario);
+            Usuario usuario = null;
             
-            // se valida que el usuario exista, y que la contraseña coincida
-            if (usuario == null || !usuario.getPass().equals(strPassword)) {
+            if (!esAnonimo) {
                 
-                // si no es asi, manda una cadena vacia
-                App.returnJsonSuccess(response, "");
-                return;
+                usuario = UsuarioDAO.ReadByNick(strUsuario);
+                
+                // se valida que el usuario exista, y que la contraseña coincida
+                if (usuario == null || !usuario.getPass().equals(strPassword)) {
+
+                    // si no es asi, manda una cadena vacia
+                    App.returnJsonSuccess(response, "");
+                    return;
+                }
+                
+                if (usuario.getNick().contains("_AN")) {
+                    App.returnJsonError(response, "El usuario es anónimo, haga click en el botón Modo Anónimo");
+                    return;
+                }
+            
+            } else {
+            
+                usuario = UsuarioDAO.ReadByNick(strUsuario);
+                
+                if (usuario != null) {
+
+                    App.returnJsonError(response, "Ingrese otro nombre de usuario anónimo");
+                    return;
+                }
+            
+                usuario = UsuarioDAO.ReadByNick(strUsuario + "_AN");
+                
+                if (usuario == null) {
+                    
+                    // creamos el usuario nuevo
+                    usuario = new Usuario();
+
+                    usuario.setNick(strUsuario + "_AN");
+                    usuario.setId_rol(App.Rol.ANONIMO.getCode());
+                    usuario.setCorreo("anonimo@fake.com");
+                    usuario.setPass("");
+                    usuario.setRuta_imagen("");
+
+                    if (!UsuarioDAO.Create(usuario)) {
+
+                        App.returnJsonError(response, "El usuario no ha sido creado por alguna razón");
+                        return;
+                    }
+                }
             }
             
             request.getSession(true).setAttribute("usuario_logeado", usuario);
@@ -46,7 +87,7 @@ public class LoginController extends HttpServlet {
             {
                 Cookie cookMantenerSesion = new Cookie("mantener_sesion", String.valueOf(usuario.getId_usuario()));
                 
-                int segundosExpiracion = 60 * 30; // 60 x 30 -> 30 minutos
+                int segundosExpiracion = 60 * 60 * 1; // 1 -> 1 hora
                 
                 cookMantenerSesion.setMaxAge(segundosExpiracion);
                 

@@ -19,3 +19,17 @@ div.segundo.encabezado {
 .card {
     border: none !important;
 }
+
+.cambiar_imagen {
+    cursor: pointer;
+}
+
+.filtros input,
+.filtros select {
+    background-color: black !important;
+    color: white !important;
+}
+.filtros input::placeholder,
+.filtros select::placeholder {
+    color: whitesmoke;
+}

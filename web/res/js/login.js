@@ -8,12 +8,15 @@ $(document).ready(function() {
 // login
 // --------------------------------------------------
 
-function frm_loginOnSubmit(e) {
-      
-    setButtonOnLoading('#btnIniciarSesion');
-    e.preventDefault();
+function frm_loginOnSubmit(e, esAnonimo) {
 
-    if (!validarCamposLogin()) {
+    if (e !== null) {
+        e.preventDefault();
+    }
+
+    setButtonOnLoading('#btnIniciarSesion');
+    
+    if (!validarCamposLogin(esAnonimo)) {
     
         setButtonOnEnabled('#btnIniciarSesion', 'Iniciar Sesión');
         return;
@@ -22,16 +25,19 @@ function frm_loginOnSubmit(e) {
     $.ajax({
         url: 'GetUsuario',
         data: {
+            esAnonimo: esAnonimo,
             nick: $('#nick').val(),
             password: $('#password').val(),
             mantener_sesion: $('#chkMantenerSesion').is(':checked')
         },
         success: function(result) {
 
-            verificarUsuarioObtenido(result);
-            limpiarCamposLogin();
             setButtonOnEnabled('#btnIniciarSesion', 'Iniciar Sesión');
-            window.location = "/LMAD_PWI/Home";
+
+            if (verificarUsuarioObtenido(result)) {
+                limpiarCamposLogin();
+                window.location = "/LMAD_PWI/Home";
+            }
         },
         error: function(jqXHR, textStatus, errorThrown) {
 
@@ -42,7 +48,7 @@ function frm_loginOnSubmit(e) {
     });
 }
 
-function validarCamposLogin() {
+function validarCamposLogin(esAnonimo) {
     
     var nick = $('#nick').val();
     var password = $('#password').val();
@@ -53,7 +59,7 @@ function validarCamposLogin() {
         return false;
     }
     
-    if (isNull(password)) {
+    if (!esAnonimo && isNull(password)) {
         
         showMessage("¡Espera!", "Ingresa la contraseña", "warning");
         return false;
@@ -73,10 +79,13 @@ function verificarUsuarioObtenido(usuario) {
     if (usuario === undefined || usuario === "") {
         
         showMessage("¡Espera!", "Usuario y/o contraseña no coinciden", "warning");
-        return;
+        return false;
+        
+    } else {
+        
+        showToast("Sesión iniciada con éxito!", "success");
+        return true;
     }
-    
-    showToast("Sesión iniciada con éxito!", "success");
 }
 
 // --------------------------------------------------
@@ -205,4 +214,10 @@ function verificarRegistro(usuario) {
     }
     
     showMessage('¡Exito!', 'El usuario ha sido creado', 'success');
+}
+
+// metodos
+
+function modoAnonimo() {
+    frm_loginOnSubmit(null, true);
 }

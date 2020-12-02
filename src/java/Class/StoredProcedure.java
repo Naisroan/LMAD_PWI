@@ -120,6 +120,10 @@ public class StoredProcedure {
         }
     }
     
+    public void close() throws SQLException {
+        _Conexion.getConnection().close();
+    }
+    
     private void setValue(CallableStatement cs, StoredProcedureParameter param, int index) throws SQLException, Exception {
         
         try {
