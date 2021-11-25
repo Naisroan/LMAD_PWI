@@ -1,5 +1,5 @@
 # LMAD_PWI - Notiapp!
-_Sitio web de noticias para proyecto final de la materia Programación Web I_
+_Sitio web de noticias realizado con Java Servlet Pages MVC_
 
 ## Requisitos 📦
 
